@@ -9,12 +9,15 @@ import iliasavin.uitestplayground.presentation.base.BasePresenter
 class PostsPresenter(private val getPostsInteractor: GetPostsInteractor): BasePresenter<PostsView>(){
 
   fun getPosts(){
+    view?.showProgress()
     getPostsInteractor.execute().subscribe(
         { posts ->
           view?.showPosts(posts)
+          view?.hideProgress()
         },
         { error ->
           view?.showError("no posts")
+          view?.hideProgress()
         }
     )
   }
