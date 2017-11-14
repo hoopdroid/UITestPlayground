@@ -4,8 +4,7 @@ import dagger.Module
 import dagger.Provides
 import iliasavin.uitestplayground.data.repository.PostsRepository
 import iliasavin.uitestplayground.domain.interactors.GetPostsInteractor
-import iliasavin.uitestplayground.presentation.base.BaseLCEView
-import iliasavin.uitestplayground.presentation.base.BasePresenter
+import iliasavin.uitestplayground.presentation.screens.posts.PostsPresenter
 
 @Module
 class PostsModule() {
@@ -14,5 +13,5 @@ class PostsModule() {
 
   @Provides
   fun providePresenter(getPostsInteractor: GetPostsInteractor)
-      = BasePresenter<BaseLCEView>(getPostsInteractor)
+      = PostsPresenter(getPostsInteractor)
 }

@@ -55,6 +55,11 @@ class ApplicationModule(val application: UITestPlaygroundApp) {
     return PostsRepositoryImpl(api)
   }
 
+  @Provides
+  fun provideGson(): Gson {
+    return Gson()
+  }
+
   private fun createRetrofit(httpClient: OkHttpClient, gson: Gson, baseUrl: String): Retrofit {
     return Builder()
         .addConverterFactory(GsonConverterFactory.create(gson))

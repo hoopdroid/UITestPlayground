@@ -3,6 +3,7 @@
     package="iliasavin.uitestplayground">
 
   <application
+      android:name=".di.UITestPlaygroundApp"
       android:allowBackup="true"
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"

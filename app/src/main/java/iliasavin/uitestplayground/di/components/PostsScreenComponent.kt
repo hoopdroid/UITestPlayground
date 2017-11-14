@@ -2,10 +2,9 @@ package iliasavin.uitestplayground.di.components
 
 import dagger.Subcomponent
 import iliasavin.uitestplayground.di.modules.PostsModule
-import iliasavin.uitestplayground.presentation.base.BaseLCEView
-import iliasavin.uitestplayground.presentation.base.BasePresenter
+import iliasavin.uitestplayground.presentation.screens.posts.PostsPresenter
 
 @Subcomponent(modules = arrayOf(PostsModule::class))
 interface PostsScreenComponent {
-  fun presenter(): BasePresenter<BaseLCEView>
+  fun presenter(): PostsPresenter
 }
