@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import iliasavin.uitestplayground.R
 import iliasavin.uitestplayground.data.entities.Post
-import iliasavin.uitestplayground.di.UITestPlaygroundApp
 import iliasavin.uitestplayground.di.modules.PostsModule
 import iliasavin.uitestplayground.presentation.base.BaseRecyclerAdapter
+import iliasavin.uitestplayground.util.customApplication
 import iliasavin.uitestplayground.util.setVisibility
+import iliasavin.uitestplayground.util.showSnackBar
 import io.reactivex.subjects.PublishSubject
+import kotlinx.android.synthetic.main.activity_posts.coordinator
 import kotlinx.android.synthetic.main.activity_posts.postsView
 import kotlinx.android.synthetic.main.activity_posts.progressBar
 import kotlinx.android.synthetic.main.post_item.view.body
@@ -19,7 +21,7 @@ import kotlinx.android.synthetic.main.post_item.view.title
 
 class PostsActivity : AppCompatActivity(), PostsView {
   private val presenter: PostsPresenter by lazy { component.presenter() }
-  private val component by lazy { UITestPlaygroundApp.component.plus(PostsModule()) }
+  private val component by lazy { customApplication.component.plus(PostsModule()) }
   private val adapter by lazy { PostsAdapter() }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +46,7 @@ class PostsActivity : AppCompatActivity(), PostsView {
 
   override fun showPosts(posts: List<Post>) {
     adapter.setData(posts)
+    adapter.onItemSelectAction.subscribe { showSnackBar(coordinator, it.title!!) }
     postsView.adapter = adapter
   }
 
@@ -62,6 +65,7 @@ class PostsAdapter : BaseRecyclerAdapter<Post>() {
   }
 
   private inner class ViewHolder(itemView: View) : BaseViewHolder<Post>(itemView) {
+
 
     override fun setItem(item: Post, position: Int) {
       itemView.title.text = item.title

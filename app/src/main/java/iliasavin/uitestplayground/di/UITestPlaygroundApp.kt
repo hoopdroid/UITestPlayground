@@ -10,6 +10,8 @@ import iliasavin.uitestplayground.di.modules.ApplicationModule
  */
 class UITestPlaygroundApp : Application() {
 
+  lateinit var component: ApplicationComponent
+
   override fun onCreate() {
     super.onCreate()
 
@@ -23,9 +25,5 @@ class UITestPlaygroundApp : Application() {
         .builder()
         .applicationModule(ApplicationModule(this))
         .build()
-  }
-
-  companion object {
-    lateinit var component: ApplicationComponent
   }
 }
