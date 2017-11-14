@@ -9,10 +9,10 @@ import iliasavin.uitestplayground.presentation.base.BasePresenter
 
 @Module
 class PostsModule() {
-    @Provides
-    fun provideGetUsers(repo: PostsRepository) = GetPosts(repo)
+  @Provides
+  fun provideGetUsers(repo: PostsRepository) = GetPosts(repo)
 
-    @Provides
-    fun providePresenter(getUsers: GetPosts, schedulerProvider: SchedulerProvider)
-            = BasePresenter<BaseLCEView>(getUsers, schedulerProvider)
+  @Provides
+  fun providePresenter(getUsers: GetPosts, schedulerProvider: SchedulerProvider)
+      = BasePresenter<BaseLCEView>(getUsers, schedulerProvider)
 }

@@ -7,5 +7,5 @@ import iliasavin.uitestplayground.presentation.base.BasePresenter
 
 @Subcomponent(modules = arrayOf(PostsModule::class))
 interface PostsScreenComponent {
-    fun presenter() : BasePresenter<BaseLCEView>
+  fun presenter(): BasePresenter<BaseLCEView>
 }

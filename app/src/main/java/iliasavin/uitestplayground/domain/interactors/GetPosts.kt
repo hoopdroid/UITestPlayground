@@ -5,7 +5,7 @@ import io.reactivex.Single
 
 class GetPosts(private val userRepository: PostsRepository) {
 
-    fun execute() : Single<List<Any>>? {
-        return null
-    }
+  fun execute(): Single<List<Any>>? {
+    return null
+  }
 }

@@ -14,23 +14,23 @@ import javax.inject.Singleton
 
 @Module
 class ApplicationModule(val application: UITestPlaygroundApp) {
-    private val BASE_URL = "https://jsonplaceholder.typicode.com/"
+  private val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
-    @Provides
-    @Singleton
-    fun provideAppContext() : Context = application
+  @Provides
+  @Singleton
+  fun provideAppContext(): Context = application
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(): Retrofit = Retrofit.Builder()
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(Gson()))
-            .baseUrl(BASE_URL)
-            .build()
+  @Provides
+  @Singleton
+  fun provideRetrofit(): Retrofit = Retrofit.Builder()
+      .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+      .addConverterFactory(GsonConverterFactory.create(Gson()))
+      .baseUrl(BASE_URL)
+      .build()
 
-    @Provides
-    @Singleton
-    fun providePostsRepository(retrofit: Retrofit): PostsRepository {
-        return PostsRepositoryImpl()
-    }
+  @Provides
+  @Singleton
+  fun providePostsRepository(retrofit: Retrofit): PostsRepository {
+    return PostsRepositoryImpl()
+  }
 }

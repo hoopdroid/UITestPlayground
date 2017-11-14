@@ -9,6 +9,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = arrayOf(ApplicationModule::class))
 interface ApplicationComponent {
-    fun inject(application: UITestPlaygroundApp)
-    fun plus(postsModule: PostsModule) : PostsScreenComponent
+  fun inject(application: UITestPlaygroundApp)
+  fun plus(postsModule: PostsModule): PostsScreenComponent
 }
