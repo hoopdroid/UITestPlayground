@@ -25,7 +25,7 @@ class TestPostDetailPresenterImpl : PostDetailPresenter {
 
   override fun setPostInfo(post: Post?) {
     this.post = getFakePost()
-    view?.showPostInfo(post)
+    view?.showPostInfo(this.post)
   }
 
   override fun updatePostInfo() {
