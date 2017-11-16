@@ -49,7 +49,7 @@ class PostsActivity : AppCompatActivity(), PostsView {
 
   override fun showPosts(posts: List<Post>) {
     adapter.setData(posts)
-    adapter.onItemSelectAction.subscribe { presenter.onItemClicked() }
+    adapter.onItemSelectAction.subscribe { post -> presenter.onItemClicked(this, post) }
     postsView.adapter = adapter
   }
 

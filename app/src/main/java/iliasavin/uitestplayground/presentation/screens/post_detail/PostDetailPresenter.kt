@@ -1,15 +1,16 @@
-package iliasavin.uitestplayground.presentation.screens.posts
+package iliasavin.uitestplayground.presentation.screens.post_detail
 
-import android.app.Activity
 import iliasavin.uitestplayground.data.entities.Post
 import iliasavin.uitestplayground.presentation.base.BaseLCEView
 
 /**
  * Created by ilyasavin on 11/15/17.
  */
-interface PostPresenter {
-  fun getPosts()
+interface PostDetailPresenter {
+  fun setPostInfo(post: Post)
+  fun updatePostInfo()
   fun attachView(view: BaseLCEView)
   fun detachView()
-  fun onItemClicked(screen: Activity, post: Post)
+  fun onTitleChanged()
+  fun onDescriptionChanged()
 }
