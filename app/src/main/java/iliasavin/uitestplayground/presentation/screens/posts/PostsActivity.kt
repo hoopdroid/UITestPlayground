@@ -11,22 +11,25 @@ import iliasavin.uitestplayground.di.modules.PostsModule
 import iliasavin.uitestplayground.presentation.base.BaseRecyclerAdapter
 import iliasavin.uitestplayground.util.customApplication
 import iliasavin.uitestplayground.util.setVisibility
-import iliasavin.uitestplayground.util.showSnackBar
 import io.reactivex.subjects.PublishSubject
-import kotlinx.android.synthetic.main.activity_posts.coordinator
 import kotlinx.android.synthetic.main.activity_posts.postsView
 import kotlinx.android.synthetic.main.activity_posts.progressBar
 import kotlinx.android.synthetic.main.post_item.view.body
 import kotlinx.android.synthetic.main.post_item.view.title
 
 class PostsActivity : AppCompatActivity(), PostsView {
-  private val presenter: PostsPresenter by lazy { component.presenter() }
-  private val component by lazy { customApplication.component.plus(PostsModule()) }
-  private val adapter by lazy { PostsAdapter() }
+  lateinit var presenter : PostPresenter
+  val component by lazy { customApplication.component.plus(PostsModule()) }
+  val adapter by lazy { PostsAdapter() }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    presenter = component.presenter()
     setContentView(R.layout.activity_posts)
+  }
+
+  override fun onStart() {
+    super.onStart()
     presenter.attachView(this)
     presenter.getPosts()
   }
@@ -46,7 +49,7 @@ class PostsActivity : AppCompatActivity(), PostsView {
 
   override fun showPosts(posts: List<Post>) {
     adapter.setData(posts)
-    adapter.onItemSelectAction.subscribe { showSnackBar(coordinator, it.title!!) }
+    adapter.onItemSelectAction.subscribe { presenter.onItemClicked() }
     postsView.adapter = adapter
   }
 

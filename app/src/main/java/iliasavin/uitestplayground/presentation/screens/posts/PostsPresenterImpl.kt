@@ -1,14 +1,24 @@
 package iliasavin.uitestplayground.presentation.screens.posts
 
 import iliasavin.uitestplayground.domain.interactors.GetPostsInteractor
-import iliasavin.uitestplayground.presentation.base.BasePresenter
+import iliasavin.uitestplayground.presentation.base.BaseLCEView
 
 /**
  * Created by ilyasavin on 11/14/17.
  */
-class PostsPresenter(private val getPostsInteractor: GetPostsInteractor): BasePresenter<PostsView>(){
+class PostsPresenterImpl(
+    private val getPostsInteractor: GetPostsInteractor) : PostPresenter {
+  var view: PostsView? = null
 
-  fun getPosts(){
+  override fun attachView(view: BaseLCEView) {
+    this.view = view as PostsView
+  }
+
+  override fun detachView() {
+    view = null
+  }
+
+  override fun getPosts() {
     view?.showProgress()
     getPostsInteractor.execute().subscribe(
         { posts ->
@@ -22,4 +32,7 @@ class PostsPresenter(private val getPostsInteractor: GetPostsInteractor): BasePr
     )
   }
 
+  override fun onItemClicked() {
+    // Go to details screen
+  }
 }
