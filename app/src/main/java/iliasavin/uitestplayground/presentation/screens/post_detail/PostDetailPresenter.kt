@@ -7,7 +7,7 @@ import iliasavin.uitestplayground.presentation.base.BaseLCEView
  * Created by ilyasavin on 11/15/17.
  */
 interface PostDetailPresenter {
-  fun setPostInfo(post: Post)
+  fun setPostInfo(post: Post?)
   fun updatePostInfo()
   fun attachView(view: BaseLCEView)
   fun detachView()

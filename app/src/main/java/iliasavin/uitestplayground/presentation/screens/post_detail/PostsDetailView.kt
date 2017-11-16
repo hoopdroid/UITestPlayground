@@ -7,5 +7,5 @@ import iliasavin.uitestplayground.presentation.base.BaseLCEView
  * Created by ilyasavin on 11/14/17.
  */
 interface PostsDetailView : BaseLCEView {
-  fun showPostInfo(post: Post)
+  fun showPostInfo(post: Post?)
 }

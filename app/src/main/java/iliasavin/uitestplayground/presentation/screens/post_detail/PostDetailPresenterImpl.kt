@@ -20,7 +20,7 @@ class PostDetailPresenterImpl(
     view = null
   }
 
-  override fun setPostInfo(post: Post) {
+  override fun setPostInfo(post: Post?) {
     renderPostInfo(post)
   }
 
@@ -35,10 +35,10 @@ class PostDetailPresenterImpl(
   }
 
 
-  private fun renderPostInfo(post: Post) {
+  private fun renderPostInfo(post: Post?) {
     view?.showProgress()
     this.post = post
-    view?.showPostInfo(post)
+    if (post != null) view?.showPostInfo(post)
     view?.hideProgress()
   }
 

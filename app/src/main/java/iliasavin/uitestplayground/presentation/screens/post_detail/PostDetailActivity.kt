@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_post.postTitle
 import kotlinx.android.synthetic.main.activity_post.updateButton
 
 class PostDetailActivity : AppCompatActivity(), PostsDetailView {
-  lateinit var presenter : PostDetailPresenter
+  lateinit var presenter: PostDetailPresenter
   val component by lazy { customApplication.component.plus(PostDetailModule()) }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +36,13 @@ class PostDetailActivity : AppCompatActivity(), PostsDetailView {
   override fun showError(message: String) {
   }
 
-  override fun showPostInfo(post: Post) {
-    postTitle.setText(post.title)
-    postDescription.setText(post.body)
-    showToast("${post.title}  ${post.body}")
-    updateButton.setOnClickListener { presenter.updatePostInfo() }
+  override fun showPostInfo(post: Post?) {
+    if (post != null) {
+      postTitle.setText(post.title)
+      postDescription.setText(post.body)
+      showToast("${post.title}  ${post.body}")
+      updateButton.setOnClickListener { presenter.updatePostInfo() }
+    }
   }
 
   override fun onDestroy() {
