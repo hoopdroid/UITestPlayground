@@ -24,6 +24,7 @@ class PostsPresenterImplTest {
 
   @Test
   fun test_presenter_has_attached_notnull_view() {
+    presenter.attachView(mockView)
     Assert.assertNotNull(presenter.view)
   }
 

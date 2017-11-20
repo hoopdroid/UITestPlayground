@@ -11,6 +11,4 @@ interface PostDetailPresenter {
   fun updatePostInfo()
   fun attachView(view: BaseLCEView)
   fun detachView()
-  fun onTitleChanged()
-  fun onDescriptionChanged()
 }
