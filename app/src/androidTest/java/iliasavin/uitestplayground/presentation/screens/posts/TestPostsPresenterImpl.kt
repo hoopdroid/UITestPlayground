@@ -1,6 +1,5 @@
 package iliasavin.uitestplayground.presentation.screens.posts
 
-import android.app.Activity
 import iliasavin.uitestplayground.data.entities.Post
 import iliasavin.uitestplayground.presentation.base.BaseLCEView
 import java.util.concurrent.CountDownLatch
@@ -27,7 +26,7 @@ class TestPostsPresenterImpl : PostPresenter {
     view?.hideProgress()
   }
 
-  override fun onItemClicked(screen: Activity, post: Post) {
+  override fun openDetailsScreen(post: Post) {
     lock?.countDown()
   }
 

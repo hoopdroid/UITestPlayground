@@ -8,4 +8,5 @@ import iliasavin.uitestplayground.presentation.base.BaseLCEView
  */
 interface PostsView : BaseLCEView {
   fun showPosts(posts: List<Post>)
+  fun showDetailsScreen(post: Post)
 }

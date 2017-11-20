@@ -9,6 +9,7 @@ import iliasavin.uitestplayground.R
 import iliasavin.uitestplayground.data.entities.Post
 import iliasavin.uitestplayground.di.modules.PostsModule
 import iliasavin.uitestplayground.presentation.base.BaseRecyclerAdapter
+import iliasavin.uitestplayground.presentation.routers.ScreenRouter
 import iliasavin.uitestplayground.util.customApplication
 import iliasavin.uitestplayground.util.setVisibility
 import io.reactivex.subjects.PublishSubject
@@ -21,6 +22,7 @@ class PostsActivity : AppCompatActivity(), PostsView {
   lateinit var presenter : PostPresenter
   val component by lazy { customApplication.component.plus(PostsModule()) }
   val adapter by lazy { PostsAdapter() }
+  val router by lazy { ScreenRouter() }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -49,13 +51,17 @@ class PostsActivity : AppCompatActivity(), PostsView {
 
   override fun showPosts(posts: List<Post>) {
     adapter.setData(posts)
-    adapter.onItemSelectAction.subscribe { post -> presenter.onItemClicked(this, post) }
+    adapter.onItemSelectAction.subscribe { post -> presenter.openDetailsScreen(post) }
     postsView.adapter = adapter
   }
 
   override fun onDestroy() {
     super.onDestroy()
     presenter.detachView()
+  }
+
+  override fun showDetailsScreen(post: Post) {
+    router.openPostDetailsScreen(this, post)
   }
 }
 
