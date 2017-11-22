@@ -32,12 +32,6 @@ class TestPostDetailPresenterImpl : PostDetailPresenter {
     lock?.countDown()
   }
 
-  override fun onTitleChanged() {
-  }
-
-  override fun onDescriptionChanged() {
-  }
-
   private fun getFakePost(): Post {
     return Post(0, "Long post title header",
         "Very long long long long description of post", 0)

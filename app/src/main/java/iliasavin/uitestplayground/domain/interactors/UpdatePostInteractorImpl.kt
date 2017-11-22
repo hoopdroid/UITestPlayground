@@ -4,9 +4,9 @@ import iliasavin.uitestplayground.data.entities.Post
 import iliasavin.uitestplayground.data.repository.PostsRepository
 import io.reactivex.Single
 
-class UpdatePostInteractor(private val postsRepo: PostsRepository) {
+class UpdatePostInteractorImpl(private val postsRepo: PostsRepository): UpdatePostsInteractor {
 
-  fun execute(): Single<List<Post>> {
+  override fun execute(): Single<List<Post>> {
     val postsList = postsRepo.getPosts()
     return postsList
   }
